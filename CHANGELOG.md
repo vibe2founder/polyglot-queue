@@ -17,3 +17,6 @@ All notable changes to this project will be documented in this file.
 - Added Example usage.
 - 📝 Created "cabuloso" README.md with project overview and technical highlights.
 - 📊 Prepared reporting structure.
+- ✅ Implemented Unit Test suite for Core and Redis-Native (RESP Parser).
+- 🥒 Created BDD specification (Gherkin) for universal routing scenarios.
+- 🔧 Configured Bun-native testing automation.
