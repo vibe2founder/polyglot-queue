@@ -23,3 +23,4 @@ All notable changes to this project will be documented in this file.
 - 📖 Documented "Native Core" architecture and TCP/Wire Protocol strategies.
 - ⚡️ Implemented high-performance Benchmarks for RespParser and QueueTranslator.
 - 🚀 Achieved throughput of >17M ops/sec on Native Parser.
+- 📖 Created `ARCHITECTURE.md` with deep dive into Native TCP, RESP Parsing, and Wire Protocol roadmap.
