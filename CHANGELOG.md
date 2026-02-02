@@ -21,3 +21,5 @@ All notable changes to this project will be documented in this file.
 - 🥒 Created BDD specification (Gherkin) for universal routing scenarios.
 - 🔧 Configured Bun-native testing automation.
 - 📖 Documented "Native Core" architecture and TCP/Wire Protocol strategies.
+- ⚡️ Implemented high-performance Benchmarks for RespParser and QueueTranslator.
+- 🚀 Achieved throughput of >17M ops/sec on Native Parser.
