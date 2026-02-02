@@ -15,3 +15,5 @@ All notable changes to this project will be documented in this file.
 ### Docs
 - Created Architecture overview.
 - Added Example usage.
+- 📝 Created "cabuloso" README.md with project overview and technical highlights.
+- 📊 Prepared reporting structure.
