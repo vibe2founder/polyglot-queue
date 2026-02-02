@@ -20,3 +20,4 @@ All notable changes to this project will be documented in this file.
 - ✅ Implemented Unit Test suite for Core and Redis-Native (RESP Parser).
 - 🥒 Created BDD specification (Gherkin) for universal routing scenarios.
 - 🔧 Configured Bun-native testing automation.
+- 📖 Documented "Native Core" architecture and TCP/Wire Protocol strategies.
