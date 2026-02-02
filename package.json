@@ -10,6 +10,9 @@
     "typescript": "^5"
   },
   "scripts": {
-    "test": "bun test"
+    "test": "bun test",
+    "bench:parser": "bun run packages/redis-native/benchmark.ts",
+    "bench:core": "bun run packages/core/benchmark.ts",
+    "bench": "npm run bench:parser && npm run bench:core"
   }
 }
