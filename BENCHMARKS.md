@@ -1,60 +1,83 @@
-# ⚡️ Performance Benchmarks: One-Q-4-All
+# Benchmark Results - All Native Parsers
 
-Official performance results for the **One-Q-4-All** library. These benchmarks focus on native protocol parsing speed and message routing throughput.
-
----
-
-## 🏎️ 1. Native RESP Parser (Redis)
-This benchmark measures the number of Redis Serialization Protocol (RESP) commands processed per second using our zero-dependency native implementation.
-
-**Hardware/Runtime:** Bun v1.3.1 (Linux/WSL)
-**Iterations:** 1,000,000
-
-| Command Type | Average Latency | Throughput (Ops/sec) |
-| :--- | :--- | :--- |
-| **Simple String** (`+OK\r\n`) | 56.96ms | **17,556,551 ops/s** |
-| **Bulk String** (`$11\r\nhello world\r\n`) | ~88.40ms | **~11,312,217 ops/s** |
-| **Array (2 items)** (`*2\r\n...`) | ~135.20ms | **~7,396,449 ops/s** |
-
-> **Verdict**: The native parser is extremely efficient, processing millions of packets per second with minimal memory allocation.
+**Data**: 03/02/2026
+**Runtime**: Bun v1.3.1
+**Machine**: Windows (via WSL)
+**Iterations**: 1,000,000 per test
 
 ---
 
-## 🔄 2. QueueTranslator Routing
-This benchmark measures the throughput of the internal routing engine, mapping messages from one broker adapter to another.
+## 📊 Summary Table
 
-**Conditions:** 500,000 simulated messages in a loop.
-
-| Metric | Result |
-| :--- | :--- |
-| **Message Throughput** | **~73,800 msg/s** |
-| **Routing Latency** | **~0.013ms per message** |
-
----
-
-## 📊 3. Comparative Advantage 
-Why our **Native Implementation** beats traditional wrappers:
-
-1. **Memory Slicing**: We use native `buffer.slice()` and string manipulation which, in the Bun engine, avoids excessive memory copying.
-2. **Zero Abstraction Leak**: We don't convert to intermediate objects unless necessary.
-3. **No External Event Loops**: We rely on the native event-driven nature of Node.js/Bun sockets.
+| Protocol | Best Case | Worst Case | Notes |
+|----------|-----------|------------|-------|
+| **Redis (RESP)** | 13.5M ops/s | 13.5M ops/s | Highly optimized text protocol |
+| **NATS** | 11.1M ops/s | 2.4M ops/s | Control msgs fastest, large MSG slower |
+| **RabbitMQ (AMQP)** | 1.8M ops/s | 735K ops/s | Binary frames, size-dependent |
+| **Kafka** | 1.8M ops/s | 760K ops/s | Binary protocol, similar to AMQP |
 
 ---
 
-## 🛠️ How to run these benchmarks locally
-You can reproduce these results by running:
+## 🔴 Redis RESP Parser
 
-```bash
-# Run all benchmarks
-bun run bench
-
-# Run specific parser benchmark
-bun run bench:parser
-
-# Run specific routing benchmark
-bun run bench:core
-```
+| Command Type | Ops/sec |
+|--------------|---------|
+| Simple String | **13,481,981** |
 
 ---
-*Reported on: 2026-02-02*
-*System Profile: High-Concurrency Native I/O*
+
+## 🟢 NATS Parser
+
+| Message Type | Ops/sec |
+|--------------|---------|
+| Simple MSG | 3,194,394 |
+| PING | **11,158,553** |
+| PONG | 10,929,544 |
+| +OK | 10,862,565 |
+| INFO (JSON) | 2,857,294 |
+| MSG with Reply | 2,400,310 |
+
+---
+
+## 🐰 RabbitMQ/AMQP Parser
+
+| Frame Type | Ops/sec |
+|------------|---------|
+| HEARTBEAT (0 bytes) | **1,822,392** |
+| METHOD (32 bytes) | 1,784,197 |
+| HEADER (64 bytes) | 1,804,770 |
+| BODY (256 bytes) | 1,615,828 |
+| BODY (1024 bytes) | 735,798 |
+
+---
+
+## ☕ Kafka Binary Parser
+
+### Response Parsing
+| Payload Size | Ops/sec |
+|--------------|---------|
+| 16 bytes | **1,827,252** |
+| 64 bytes | 1,799,188 |
+| 256 bytes | 1,366,870 |
+| 1024 bytes | 760,447 |
+
+### Request Encoding
+| Request Type | Ops/sec |
+|--------------|---------|
+| ApiVersions | 882,649 |
+| Metadata | 812,767 |
+| Produce | 811,199 |
+
+---
+
+## 🏆 Key Insights
+
+1. **Redis RESP é o campeão absoluto** - O protocolo de texto simples permite parsing ultrarrápido de 13.5M ops/s.
+2. **NATS é excelente para controle** - Commands como PING/PONG atingem 11M ops/s.
+3. **Protocolos binários (AMQP/Kafka)** - Mantêm performance consistente de ~1.8M ops/s para payloads pequenos.
+4. **Performance degrada com tamanho** - Payloads maiores (1KB+) reduzem throughput em ~60%.
+5. **Zero dependencies** - Todas as métricas foram atingidas sem bibliotecas externas.
+
+---
+
+*Gerado autonomamente pelo Antigravity Agent.*
