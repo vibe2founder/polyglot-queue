@@ -8,4 +8,4 @@
 - [ ] Implement NATS Adapter - *Implemented as Stub*.
 - [x] Implement Skeleton Adapters for RabbitMQ, Kafka, Redpanda.
 - [x] Create Integration Test / Demo.
-- [ ] Final Report.
+- [x] Final Report (HTML & Markdown).
