@@ -28,3 +28,6 @@ All notable changes to this project will be documented in this file.
 - ✨ Added `TestScenario` and `MockBrokerAdapter` for simulating complex routing behavior without Docker.
 - 🌐 Launched the **Official Project Website** (`site/index.html`) with premium design and AI-generated assets.
 - 🎨 Implemented glassmorphism UI, smooth scroll animations, and interactive benchmark visualizations.
+- 📦 Configured `package.json` for NPM distribution with full metadata and path exports.
+- 🖼️ Generated and integrated premium AI-designed logo into the official site.
+- ⚖️ Added MIT License.

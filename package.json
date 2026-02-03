@@ -1,8 +1,42 @@
 {
-  "name": "one-q-4-all",
+  "name": "@purecore/one-q-4-all",
+  "version": "1.0.0",
+  "description": "Universal and Native Message Routing Infrastructure. Zero dependencies, ultra-high performance.",
   "module": "index.ts",
+  "main": "index.ts",
+  "types": "index.ts",
   "type": "module",
-  "private": true,
+  "author": "PureCore Team",
+  "license": "MIT",
+  "homepage": "https://purecore.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purecore/one-q-4-all.git"
+  },
+  "keywords": [
+    "queue",
+    "routing",
+    "message-broker",
+    "native",
+    "redis",
+    "kafka",
+    "nats",
+    "rabbitmq",
+    "high-performance",
+    "zero-dependency"
+  ],
+  "exports": {
+    ".": "./index.ts",
+    "./core": "./packages/core/index.ts",
+    "./redis": "./packages/redis-native/index.ts",
+    "./test-kit": "./packages/queue-test-kit/index.ts"
+  },
+  "files": [
+    "index.ts",
+    "packages",
+    "README.md",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },
