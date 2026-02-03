@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Q-4-All | Ultra-High Performance Message Routing</title>
+    <meta name="description" content="One-Q-4-All: The universal, zero-dependency message routing ecosystem. Achieve 17.5M+ ops/sec with native TCP wire protocols.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --glass: rgba(15, 23, 42, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: 
+                linear-gradient(rgba(3, 7, 18, 0.7), rgba(3, 7, 18, 0.7)),
+                url('assets/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 36px;
+            border-radius: 99px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* Stats Section */
+        .section-stats {
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            transition: border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .section-features {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .feature-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .feature-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Code Block */
+        .code-container {
+            margin-top: 40px;
+            background: #000;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: #7dd3fc;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 20px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* Scroll Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>One-Q-4-All</h1>
+            <p class="tagline">The Universal & Native Infrastructure for Message Translation & Routing.</p>
+            <div class="btn-group">
+                <a href="https://github.com/purecore/one-q-4-all" class="btn btn-primary">View on GitHub</a>
+                <a href="#benchmarks" class="btn btn-secondary">Explore Benchmarks</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-stats" id="benchmarks">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-value">17.5M+</div>
+                <div class="stat-label">Operations / Sec</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 0.2s;">
+                <div class="stat-value">~73.8K</div>
+                <div class="stat-label">Messages / Sec</div>
+            </div>
+            <div class="stat-card reveal" style="transition-delay: 0.4s;">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Dependencies</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-features">
+        <div class="section-header">
+            <h2 class="reveal">Pure Tech. Pure Performance.</h2>
+            <p class="tagline reveal">Built for the next generation of event-driven architectures.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <h3>Native Wire Protocols</h3>
+                <ul class="feature-list">
+                    <li><strong>No Wrappers:</strong> Direct TCP socket manipulation for maximum throughput.</li>
+                    <li><strong>Advanced Parsing:</strong> Custom machines for RESP, Kafka, and NATS protocols.</li>
+                    <li><strong>Low Overhead:</strong> Minimal memory allocation via buffer slicing.</li>
+                </ul>
+                <div class="code-container">
+                    // Native RESP Parsing<br>
+                    const parser = new RespParser();<br>
+                    parser.append(tcpChunk);<br>
+                    const msgs = parser.process();
+                </div>
+            </div>
+
+            <div class="feature-card reveal" style="transition-delay: 0.2s;">
+                <h3>Universal Routing</h3>
+                <ul class="feature-list">
+                    <li><strong>Multi-Protocol:</strong> Bridge Redis, Kafka, NATS, and RabbitMQ seamlessly.</li>
+                    <li><strong>Stub Pattern:</strong> Ready-to-use adapters with consistent interfaces.</li>
+                    <li><strong>Event-Driven:</strong> Built on top of Node.js/Bun EventEmitter.</li>
+                </ul>
+                <div class="code-container">
+                    translator.addRoute(<br>
+                    &nbsp;&nbsp;'redis', 'orders',<br>
+                    &nbsp;&nbsp;'kafka', 'analytics'<br>
+                    );
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-features" style="padding-top: 0;">
+        <div class="feature-card reveal" style="width: 100%;">
+            <h3>The Queue Test Kit</h3>
+            <p style="margin-bottom: 30px; color: var(--text-dim); font-size: 1.2rem;">
+                Don't wait for your infrastructure to catch up. Test your routing logic in memory, without Docker.
+            </p>
+            <div class="features-grid">
+                <ul class="feature-list">
+                    <li><strong>Mock Adapters:</strong> Simulate real broker behavior and failures.</li>
+                    <li><strong>Deep Assertions:</strong> Verify payload delivery with partial object matching.</li>
+                    <li><strong>CI/CD Ready:</strong> Runs in milliseconds, zero maintenance.</li>
+                </ul>
+                <div class="code-container">
+                    await scenario.assertReceived(<br>
+                    &nbsp;&nbsp;'target-queue', <br>
+                    &nbsp;&nbsp;'channel', <br>
+                    &nbsp;&nbsp;{ status: 'DELIVERED' }<br>
+                    );
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">One-Q-4-All</div>
+        <p class="tagline">Empowering Event-Driven Systems.</p>
+        <p class="copyright">
+            © 2026 @purecore Project. Built with passion & Bun.<br>
+            Designed by Antigravity AI.
+        </p>
+    </footer>
+
+    <script>
+        // Simple Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Run once on load
+    </script>
+</body>
+</html>

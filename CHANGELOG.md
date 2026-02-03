@@ -26,3 +26,5 @@ All notable changes to this project will be documented in this file.
 - 📖 Created `ARCHITECTURE.md` with deep dive into Native TCP, RESP Parsing, and Wire Protocol roadmap.
 - 🧪 Implemented `queue-test-kit` package for E2E and Unit testing of queue flows.
 - ✨ Added `TestScenario` and `MockBrokerAdapter` for simulating complex routing behavior without Docker.
+- 🌐 Launched the **Official Project Website** (`site/index.html`) with premium design and AI-generated assets.
+- 🎨 Implemented glassmorphism UI, smooth scroll animations, and interactive benchmark visualizations.
