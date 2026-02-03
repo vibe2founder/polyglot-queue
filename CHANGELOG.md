@@ -24,3 +24,5 @@ All notable changes to this project will be documented in this file.
 - ⚡️ Implemented high-performance Benchmarks for RespParser and QueueTranslator.
 - 🚀 Achieved throughput of >17M ops/sec on Native Parser.
 - 📖 Created `ARCHITECTURE.md` with deep dive into Native TCP, RESP Parsing, and Wire Protocol roadmap.
+- 🧪 Implemented `queue-test-kit` package for E2E and Unit testing of queue flows.
+- ✨ Added `TestScenario` and `MockBrokerAdapter` for simulating complex routing behavior without Docker.

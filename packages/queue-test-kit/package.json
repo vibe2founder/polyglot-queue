@@ -1,0 +1,13 @@
+{
+  "name": "@one-q-4-all/queue-test-kit",
+  "version": "1.0.0",
+  "description": "Framework de testes e2e e unitários para sistemas de filas",
+  "main": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "bun-types": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
