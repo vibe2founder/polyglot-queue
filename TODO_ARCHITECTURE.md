@@ -2,3 +2,4 @@
 [x] Detalhar a implementação do RESP Parser (Redis)
 [x] Explicar o modelo de stubs para outros protocolos (Kafka/NATS/RabbitMQ)
 [x] Relatório final em Markdown
+[x] Relatório final em HTML
