@@ -33,3 +33,4 @@ All notable changes to this project will be documented in this file.
 - ⚖️ Added MIT License.
 - ⚡ Implemented **Native NATS Adapter** with TCP Wire Protocol and custom parser.
 - 🐰 Implemented **Native RabbitMQ Adapter** with full AMQP 0-9-1 frame parsing and handshake.
+- ☕ Implemented **Native Kafka Adapter** with full binary protocol (ApiVersions, Metadata, Produce).
