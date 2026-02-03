@@ -31,3 +31,5 @@ All notable changes to this project will be documented in this file.
 - 📦 Configured `package.json` for NPM distribution with full metadata and path exports.
 - 🖼️ Generated and integrated premium AI-designed logo into the official site.
 - ⚖️ Added MIT License.
+- ⚡ Implemented **Native NATS Adapter** with TCP Wire Protocol and custom parser.
+- 🐰 Implemented **Native RabbitMQ Adapter** with full AMQP 0-9-1 frame parsing and handshake.
