@@ -7,6 +7,26 @@
   "dependencies": {
     "bun-types": "latest"
   },
+  "keywords": [
+    "testing",
+    "queue",
+    "mock",
+    "kafka",
+    "redis",
+    "nats",
+    "event-sourcing"
+  ],
+  "author": "Jean Carlo Nascimento <antigravity@purecore.io>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "^5"
   }
