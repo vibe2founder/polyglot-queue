@@ -1,20 +1,50 @@
-import type { IAdapter } from "../core/index";
 import { EventEmitter } from "events";
+import type { IAdapter, IMessage } from "../core/index";
+import { NatsClient } from "./client";
 
-export class NatsAdapter extends EventEmitter implements IAdapter {
-  name = "nats";
+export class NatsNativeAdapter extends EventEmitter implements IAdapter {
+  name: string = "nats";
+  private client: NatsClient;
 
-  async connect() {
-    console.log("[NATS-Native] Stub Connected");
+  constructor(host: string = "localhost", port: number = 4222) {
+    super();
+    this.client = new NatsClient(host, port);
+
+    this.client.on("message", (msg) => {
+      const imessage: IMessage = {
+        id: crypto.randomUUID(),
+        topic: msg.subject,
+        source: this.name,
+        payload: this.parsePayload(msg.payload),
+        timestamp: Date.now(),
+        ack: async () => {}, // NATS Core doesn't require ACKs for standard PUB/SUB
+        nack: async () => {},
+      };
+      this.emit("message", imessage);
+    });
   }
 
-  async disconnect() {}
-
-  async publish(topic: string, payload: any) {
-    console.log(`[NATS-Native] Publish to ${topic}`, payload);
+  async connect(): Promise<void> {
+    await this.client.connect();
   }
 
-  async subscribe(topic: string) {
-    console.log(`[NATS-Native] Subscribe to ${topic}`);
+  async disconnect(): Promise<void> {
+    await this.client.disconnect();
+  }
+
+  async publish(topic: string, payload: any): Promise<void> {
+    this.client.publish(topic, payload);
+  }
+
+  async subscribe(topic: string): Promise<void> {
+    this.client.subscribe(topic);
+  }
+
+  private parsePayload(payload: string): any {
+    try {
+      return JSON.parse(payload);
+    } catch {
+      return payload;
+    }
   }
 }
