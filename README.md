@@ -1,8 +1,8 @@
-# 🚀 One-Q-4-All
+# 🚀 Polyglot Queue
 
-O **One-Q-4-All** é um Tradutor de Filas (Queue Translator) universal e nativo, construído para unificar o caos dos protocolos de mensageria em uma única interface elegante e eficiente.
+O **Polyglot Queue** é um Tradutor de Filas (Queue Translator) universal e nativo, construído para unificar o caos dos protocolos de mensageria em uma única interface elegante e eficiente.
 
-Imagine poder rotear mensagens do **NATS** para o **Kafka**, do **Redis Streams** para o **RabbitMQ**, sem precisar de infraestruturas pesadas ou configurações complexas. O One-Q-4-All faz exatamente isso, utilizando implementações nativas e de alta performance.
+Imagine poder rotear mensagens do **NATS** para o **Kafka**, do **Redis Streams** para o **RabbitMQ**, sem precisar de infraestruturas pesadas ou configurações complexas. O Polyglot Queue faz exatamente isso, utilizando implementações nativas e de alta performance.
 
 ---
 
@@ -68,18 +68,3 @@ Para entender mais sobre a evolução do projeto e decisões técnicas:
    ```bash
    bun test
    ```
-
----
-
-## 👨‍💻 Autor
-
-Criado com ❤️ por **Jean Carlo Nascimento** e potencializado pela **Antigravity AI**.
-
----
-
-### 💡 Por que @purecore?
-
-O projeto faz parte do ecossistema `@purecore`, focado em criar ferramentas de infraestrutura puras, leves e extremamente rápidas para o mundo moderno.
-
----
-[Como foi feito e Como funciona (Post Técnico)](./README.md#post-tecnico)
